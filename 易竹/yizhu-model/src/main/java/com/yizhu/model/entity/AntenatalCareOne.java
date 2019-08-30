@@ -2,8 +2,7 @@ package com.yizhu.model.entity;
 
 import java.util.Date;
 import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.ybs.phl.base.BaseEntity;
+
 import lombok.*;
 
 /**
@@ -13,8 +12,8 @@ import lombok.*;
 * @date 2019-06-18
 */
 @Data
-@TableName("ybs_antenatal_care_one")
-public class AntenatalCareOne extends BaseEntity{
+//@TableName("ybs_antenatal_care_one")
+public class AntenatalCareOne {
 
     /** 唯一ID */
     private Long id;

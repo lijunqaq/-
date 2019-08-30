@@ -1,6 +1,5 @@
 package com.yizhu.model;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -10,7 +9,7 @@ import java.util.Date;
  * 儿童龄视力检查表
  */
 @Data
-@TableName("ybs_child_eye")
+//@TableName("ybs_child_eye")
 public class ChildEye {
 
     /** 主键自动增长*/

@@ -1,7 +1,6 @@
 package com.yizhu.model.inside.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ybs.phl.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -16,9 +15,9 @@ import java.util.Date;
  * @date 2019-06-18
  */
 @Data
-@EqualsAndHashCode(callSuper=true)
+//@EqualsAndHashCode(callSuper=true)
 @ApiModel(description = "枚举信息表-枚举键DTO")
-public class EnumDTO extends BaseDTO {
+public class EnumDTO  {
 
     /** 枚举主键id */
     @ApiModelProperty(value = "枚举主键id")
