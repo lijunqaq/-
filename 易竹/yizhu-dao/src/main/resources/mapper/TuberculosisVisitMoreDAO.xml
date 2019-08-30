@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 肺结核患者随访服务记录表（多次） -->
+<mapper namespace="com.ybs.phl.dao.TuberculosisVisitMoreDAO">
+
+    <sql id="allColumns">
+        t.id as id, t.resident_info_id as residentInfoId, t.collect_mode as collectMode, t.group_relation_id as groupRelationId, t.visit_mode as visitMode, t.treatment_order as treatmentOrder, 
+        t.steering_type as steeringType, t.steering_type_other as steeringTypeOther, t.symptoms as symptoms, t.symptoms_other as symptomsOther, t.life_smoke as lifeSmoke, t.life_smoke_target as lifeSmokeTarget, 
+        t.life_drink_wine as lifeDrinkWine, t.life_drink_wine_target as lifeDrinkWineTarget, t.medic_chemotherapy as medicChemotherapy, t.medic_usage as medicUsage, t.medic_drug_formulation as medicDrugFormulation, t.medic_missing_drug_num as medicMissingDrugNum, 
+        t.adverse_reaction as adverseReaction, t.adverse_reaction_value as adverseReactionValue, t.complication as complication, t.complication_value as complicationValue, t.referral as referral, t.referral_reason as referralReason, 
+        t.referral_department as referralDepartment, t.referral_weekvisit as referralWeekvisit, t.handle_opinions as handleOpinions, t.stop_treatment_date as stopTreatmentDate, t.stop_treatment_reason as stopTreatmentReason, t.visit_plan_times as visitPlanTimes, 
+        t.visit_real_times as visitRealTimes, t.medication_plan_times as medicationPlanTimes, t.medication_real_times as medicationRealTimes, t.medication_percent as medicationPercent, t.assessment_doctor_sign as assessmentDoctorSign, t.state as state, 
+        t.resp_doctor_id as respDoctorId, t.executor_ip as executorIp, t.executor_id as executorId, t.last_executor_id as lastExecutorId, t.input_doctor_id as inputDoctorId, t.createtime as createtime, 
+        t.updatetime as updatetime, t.visit_place as visitPlace, t.visit_scene_photo as visitScenePhoto, t.visit_date as visitDate, t.next_date as nextDate, t.doctor_sign as doctorSign, 
+        t.people_sign as peopleSign, t.valid as valid, t.tmp_resident_info_id as tmpResidentInfoId, t.tmp_resp_doctor_id as tmpRespDoctorId, t.tmp_executor_id as tmpExecutorId, t.tmp_last_executor_id as tmpLastExecutorId, 
+        t.visit_unit_id as visitUnitId, t.source as source
+    </sql>
+	
+</mapper>

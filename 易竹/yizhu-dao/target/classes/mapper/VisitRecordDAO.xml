@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 居民随访总表 -->
+<mapper namespace="com.ybs.phl.dao.VisitRecordDAO">
+
+    <sql id="allColumns">
+        t.id as id, t.resident_info_id as residentInfoId, t.doctor_id as doctorId, t.team_id as teamId, t.unit_id as unitId, t.unit_name as unitName, 
+        t.operator_id as operatorId, t.group_type as groupType, t.type as type, t.state as state, t.relation_id as relationId, t.visit_date as visitDate, 
+        t.lost_reason as lostReason, t.group_relation_id as groupRelationId, t.ctime as ctime, t.utime as utime, t.valid as valid, t.source as source, 
+        t.type_child_detail as typeChildDetail
+    </sql>
+
+    <select id="queryPlanVisitInfoByResidentIdsAndYear" resultType="VisitServiceConuntDTO" parameterType="java.lang.Object" >
+        select
+        count(0) num,resident_info_id  residentID
+        from ybs_visit_record
+        where resident_info_id in
+        <foreach collection="idList" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+         and valid = 1 and year(visit_date) = #{year} GROUP BY resident_info_id
+    </select>
+
+    <select id="queryStandingBookCount" resultType="VisitRecord">
+        SELECT
+            visit_date as visitDate,type,relation_id as relationId,resident_info_id as residentInfoId
+        FROM
+            ybs_visit_record
+        WHERE
+            valid = 1
+        AND type IN (39, 40)
+        AND YEAR (visit_date) = #{year}
+        AND resident_info_id in
+        <foreach collection='residentInfoIds' item='residentId' separator=',' open="(" close=")" >
+            #{residentId}
+        </foreach>
+    </select>
+
+    <select id="queryByGroupAndSource" resultType="VisitRecord">
+        SELECT
+            <include refid="allColumns" />
+        FROM
+             ybs_visit_record t
+        WHERE t.resident_info_id = #{residentId}
+        AND t.group_type = #{type}
+        AND t.valid = 1
+        AND year(t.visit_date) = #{year}
+    </select>
+
+    <select id="queryForSource" resultType="VisitRecord">
+        SELECT
+        <include refid="allColumns" />
+        FROM
+        ybs_visit_record t
+        WHERE t.resident_info_id = #{residentId}
+        AND t.type = #{type}
+        AND t.valid = 1
+        ORDER BY t.visit_date DESC
+    </select>
+
+
+    <select id="findLastVisitDateByResidentIdAndYear" resultType="VisitRecord">
+        SELECT
+        t.resident_info_id,t.group_type, max(t.visit_date) as  visitDate
+        FROM
+        ybs_visit_record t
+        WHERE t.resident_info_id = #{residentId}
+        AND t.group_type in
+        <foreach collection='groupNames' item='item' separator=',' open="(" close=")" >
+            #{item}
+        </foreach>
+        AND t.source = #{source}
+        AND t.valid = 1
+        AND YEAR(t.visit_date) = #{year}
+        GROUP BY t.group_type
+    </select>
+
+
+</mapper>
